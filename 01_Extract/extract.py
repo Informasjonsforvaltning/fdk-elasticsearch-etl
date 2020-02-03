@@ -40,4 +40,4 @@ with open(args.inputfile, encoding='utf-8') as f:
             json.dump(r.json(), outfile, ensure_ascii=False, indent=4)
 
        # get total number of rows
-       print("Total no. of organizations from enhetsregisteret: %d"%(reader.line_num - 1))
+        print("Total no. of organizations from enhetsregisteret: %d"%(reader.line_num - 1))
