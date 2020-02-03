@@ -18,14 +18,13 @@ with open(args.inputfile, encoding='utf-8') as f:
     next(reader, None)
     for row in reader:
         orgNummer = row[0]
-        inputfileName = args.outputdirectory + orgNummer + "_Publisher.json"
+        inputfileName = args.outputdirectory + orgNummer + "_begreper.json"
         with open(inputfileName) as json_file:
             data = json.load(json_file)
             # PUT THE CORRECT URL IN HERE:
             host = ''
             if len(host) == 0:
                 sys.exit('You must provide the url to the server!')
-            url = host + "/dcat/publisher/" + orgNummer
             headers = {'Content-Type' : 'application/json'}
             # PUT THE COOKIE NAME:VALUE IN HERE
             cookieName = 'devshell-proxy-session'
@@ -36,5 +35,7 @@ with open(args.inputfile, encoding='utf-8') as f:
             print("Posting to the following url: ", url)
             print("Posting to publisher index the following data:\n", data)
             # Load the publisher by posting the data:
-            r = requests.post(url, cookies=cookies, json=data, headers=headers)
-            print (orgNummer + ": " + str(r.status_code))
+            for begrep in data:
+                url = host + "/ccat_v34/concept/" + begrep["_id"]
+                r = requests.put(url, cookies=cookies, json=begrep, headers=headers)
+                print ("Updated " + begrep["_id"] + ": " + str(r.status_code))
