@@ -18,7 +18,7 @@ with open(args.inputfile, encoding='utf-8') as f:
     next(reader, None)
     for row in reader:
         orgNummer = row[0]
-        data = json.load('{"query":{"bool":{"must":[{"match":{"publisher.orgPath":"/STAT/972417807/974761076"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}')
+        data = json.loads('{"query":{"bool":{"must":[{"match":{"publisher.orgPath":"/STAT/972417807/974761076"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}')
         # PUT THE CORRECT URL IN HERE:
         host = 'https://8888-dot-7801860-dot-devshell.appspot.com/'
         if len(host) == 0:
