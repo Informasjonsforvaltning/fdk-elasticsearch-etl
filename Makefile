@@ -11,7 +11,7 @@ transform:
 
 load:
 	echo "Loading...."
-	python3 ./03_load/load.py -o ./tmp/ -i ./organizations_01.csv
+	python3 ./03_Load/load.py -o ./tmp/ -i ./organizations_01.csv
 
 clean:
 	rm ./tmp/*.json

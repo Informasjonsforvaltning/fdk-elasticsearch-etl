@@ -22,20 +22,20 @@ with open(args.inputfile, encoding='utf-8') as f:
         with open(inputfileName) as json_file:
             data = json.load(json_file)
             # PUT THE CORRECT URL IN HERE:
-            host = ''
+            host = 'https://8888-dot-7801860-dot-devshell.appspot.com'
             if len(host) == 0:
                 sys.exit('You must provide the url to the server!')
             headers = {'Content-Type' : 'application/json'}
             # PUT THE COOKIE NAME:VALUE IN HERE
             cookieName = 'devshell-proxy-session'
-            cookieValue = ''
+            cookieValue = 'b9edd3b588b755a9164d7f396d5f5a17d3962d08a6d005c818ae408eccd5dae8'
             if len(cookieValue) == 0:
                 sys.exit('You must provide the cookieValue!')
             cookies={cookieName:cookieValue}
-            print("Posting to the following url: ", url)
             print("Posting to publisher index the following data:\n", data)
             # Load the publisher by posting the data:
             for begrep in data:
-                url = host + "/ccat_v34/concept/" + begrep["_id"]
-                r = requests.put(url, cookies=cookies, json=begrep, headers=headers)
-                print ("Updated " + begrep["_id"] + ": " + str(r.status_code))
+                url = host + "/ccat_v34/concept/" + begrep["doc"]["id"] + "/_update"
+                print("Posting to the following url: ", url)
+                r = requests.post(url, cookies=cookies, json=begrep, headers=headers)
+                print ("Updated " + begrep["doc"]["id"] + ": " + str(r.status_code))

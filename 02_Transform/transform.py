@@ -15,23 +15,11 @@ def transform(data):
     # Transforming according to rules in README
     array = data["hits"]["hits"]
     print (len(array))
-    # TODO Do the actual transformation
-    i = 0
-    j = 0
+    newArray = []
     for begrep in array:
-        try:
-            del begrep["_source"]["validFromIncluding"]
-            i = i + 1
-        except KeyError:
-            pass
-        try:
-            del begrep["_source"]["validToIncluding"]
-            j = j + 1
-        except KeyError:
-            pass
-    print("Deleted validFroms ", i)
-    print("Deleted validTos ", j)
-    transformed = array
+        begrep = {"doc" : {"id": begrep["_id"], "validFromIncluding": None, "validToIncluding": None}}
+        newArray.append(begrep)
+    transformed = newArray
     return transformed
 
 with open(args.inputfile, encoding='utf-8') as f:

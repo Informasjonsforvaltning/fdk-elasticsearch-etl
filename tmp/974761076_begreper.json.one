@@ -1,56 +1,9 @@
 [
-    {
-        "_index": "ccat_v34",
-        "_type": "concept",
-        "_id": "7f91732e-9787-40f7-a954-5756e5b031e3",
-        "_score": 0.006663712,
-        "_source": {
-            "id": "7f91732e-9787-40f7-a954-5756e5b031e3",
-            "uri": "https://fellesdatakatalog.brreg.no/api/concepts/7f91732e-9787-40f7-a954-5756e5b031e3",
-            "identifier": "http://begrepskatalogen/begrep/df78aa39-2c12-11e7-959c-005056825ca0",
-            "application": [],
-            "definition": {
-                "text": {
-                    "nb": "land som person registrert i folkeregisteret flytter til ved registering av utflytting fra Norge"
-                },
-                "remark": {},
-                "source": {
-                    "uri": null,
-                    "prefLabel": null
-                },
-                "targetGroup": null,
-                "sourceRelationship": null,
-                "range": null,
-                "sources": [],
-                "lastUpdated": null
-            },
-            "alternativeDefinition": null,
-            "subject": {
-                "nb": "Folkeregister"
-            },
-            "prefLabel": {
-                "nb": "tilflyttingsland"
-            },
-            "altLabel": [],
-            "hiddenLabel": [],
-            "contactPoint": {
-                "email": "begrepskatalogen@skatteetaten.no",
-                "telephone": null
-            },
-            "example": null,
-            "publisher": {
-                "uri": "http://data.brreg.no/enhetsregisteret/enhet/974761076",
-                "id": "974761076",
-                "name": "SKATTEETATEN",
-                "orgPath": "/STAT/972417807/974761076"
-            },
-            "harvestSourceUri": null,
-            "harvest": {
-                "firstHarvested": 1556540227460,
-                "lastHarvested": 1575556052732,
-                "lastChanged": null,
-                "changed": null
-            }
-        }
-    }
+{
+ "doc" : {
+	"id": "a503e8b5-b7a4-4fbd-84af-0a2366c52381",
+         "validFromIncluding": null,
+         "validToIncluding": null
+   }
+}
 ]
