@@ -16,10 +16,30 @@ def transform(data):
     array = data["hits"]["hits"]
     print (len(array))
     newArray = []
-    for begrep in array:
-        begrep = {"doc" : {"id": begrep["_id"], "validFromIncluding": None, "validToIncluding": None}}
-        newArray.append(begrep)
+    for dataset in array:
+        dataset = {"doc" : {"id": dataset["_id"]}}
+        newArray.append(dataset)
     transformed = newArray
+    return transformed
+
+def filter(data):
+    # Ruteplan for sykkel
+    array = data["hits"]["hits"]
+    print (len(array))
+    newArray = []
+    total = 0
+    tobedeleted = 0
+    for dataset in array:
+        # print(dataset)
+        if dataset["_source"]["uri"][:17] != "https://prod.nora":
+            if dataset["_source"]["title"]["nb"] == "Ruteplan for sykkel":
+                dataset = {"doc" : {"id": dataset["_id"],"title": dataset["_source"]["title"], "catalog": dataset["_source"]["catalog"]["uri"]}}
+                newArray.append(dataset)
+                tobedeleted += 1
+        total += 1
+    transformed = newArray
+    print("total: ", total)
+    print("tobedeleted: ", tobedeleted)
     return transformed
 
 with open(args.inputfile, encoding='utf-8') as f:
@@ -28,10 +48,10 @@ with open(args.inputfile, encoding='utf-8') as f:
     next(reader, None)
     for row in reader:
         orgNummer = row[0]
-        inputfileName = args.outputdirectory + orgNummer + "_enhetsregisteret.json.bakcup"
-        outputfileName = args.outputdirectory + orgNummer + "_begreper.json"
+        inputfileName = args.outputdirectory + orgNummer + "_datasets.json"
+        outputfileName = args.outputdirectory + orgNummer + "_datasets_tobedeleted.json"
         with open(inputfileName) as json_file:
             data = json.load(json_file)
             # Transform the organization object to publihser format:
             with open(outputfileName, 'w', encoding="utf-8") as outfile:
-                json.dump(transform(data), outfile, ensure_ascii=False, indent=4)
+                json.dump(filter(data), outfile, ensure_ascii=False, indent=4)

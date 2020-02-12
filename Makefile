@@ -7,7 +7,7 @@ extract:
 
 transform:
 	echo "Transforming...."
-	python3 ./02_Transform/transform.py -o ./tmp/ -i ./organizations_01.csv
+	python3 -u ./02_Transform/transform.py -o ./tmp/ -i ./organizations_01.csv
 
 load:
 	echo "Loading...."
